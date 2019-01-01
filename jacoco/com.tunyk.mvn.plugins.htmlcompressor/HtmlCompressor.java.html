@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HtmlCompressor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Maven HTMLCompressor Plugin</a> &gt; <a href="index.source.html" class="el_package">com.tunyk.mvn.plugins.htmlcompressor</a> &gt; <span class="el_source">HtmlCompressor.java</span></div><h1>HtmlCompressor.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011 Alex Tunyk &lt;alex at tunyk.com&gt;.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * See the NOTICE file distributed with this work for additional information
+ * regarding copyright ownership.
+ */
+package com.tunyk.mvn.plugins.htmlcompressor;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.nio.charset.Charset;
+import java.util.Map;
+
+public class HtmlCompressor {
+
+<span class="fc" id="L29">    private static final String[] FILE_EXT = {&quot;htm&quot;, &quot;html&quot;};</span>
+
+    private String[] fileExt;
+    private String srcDirPath;
+    private String targetDirPath;
+    private String fileEncoding;
+    private boolean createJsonFile;
+    private String targetJsonFilePath;
+    private String jsonIntegrationFilePath;
+    private com.googlecode.htmlcompressor.compressor.HtmlCompressor htmlCompressor;
+
+<span class="fc" id="L40">    public HtmlCompressor(String srcDirPath, String targetDirPath) {</span>
+<span class="fc" id="L41">        this.srcDirPath = srcDirPath;</span>
+<span class="fc" id="L42">        this.targetDirPath = targetDirPath;</span>
+<span class="fc" id="L43">    }</span>
+
+<span class="fc" id="L45">    public HtmlCompressor(String srcDirPath, String targetDirPath, boolean createJsonFile, String targetJsonFilePath, String jsonIntegrationFilePath) {</span>
+<span class="fc" id="L46">        this.srcDirPath = srcDirPath;</span>
+<span class="fc" id="L47">        this.targetDirPath = targetDirPath;</span>
+<span class="fc" id="L48">        this.createJsonFile = createJsonFile;</span>
+<span class="fc" id="L49">        this.targetJsonFilePath = targetJsonFilePath;</span>
+<span class="fc" id="L50">        this.jsonIntegrationFilePath = jsonIntegrationFilePath;</span>
+<span class="fc" id="L51">    }</span>
+
+    public void compress()  throws Exception {
+<span class="pc bpc" id="L54" title="3 of 4 branches missed.">        if (fileExt == null || fileExt.length == 0) {</span>
+<span class="fc" id="L55">            fileExt = FILE_EXT;</span>
+        }
+        
+<span class="fc" id="L58">        FileTool fileTool = new FileTool(srcDirPath, fileExt, true);</span>
+<span class="fc" id="L59">        fileTool.setFileEncoding(fileEncoding);</span>
+<span class="fc" id="L60">        Map&lt;String, String&gt; map = fileTool.getFiles();</span>
+
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (htmlCompressor == null) {</span>
+<span class="fc" id="L63">            htmlCompressor = new com.googlecode.htmlcompressor.compressor.HtmlCompressor();</span>
+        }
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        for(String key : map.keySet()) {</span>
+<span class="fc" id="L67">            map.put(key, htmlCompressor.compress(map.get(key)));</span>
+<span class="fc" id="L68">        }</span>
+
+<span class="fc" id="L70">        fileTool.writeFiles(map, targetDirPath);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (createJsonFile) {</span>
+<span class="fc" id="L72">            String jsonIntegrationCode = FileUtils.readFileToString(new File(jsonIntegrationFilePath), Charset.defaultCharset());</span>
+<span class="fc" id="L73">            fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);</span>
+        }
+<span class="fc" id="L75">    }</span>
+
+    public String[] getFileExt() {
+<span class="nc" id="L78">        return fileExt;</span>
+    }
+
+    public void setFileExt(String[] fileExt) {
+<span class="fc" id="L82">        this.fileExt = fileExt;</span>
+<span class="fc" id="L83">    }</span>
+    
+    public String getSrcDirPath() {
+<span class="nc" id="L86">        return srcDirPath;</span>
+    }
+
+    public void setSrcDirPath(String srcDirPath) {
+<span class="nc" id="L90">        this.srcDirPath = srcDirPath;</span>
+<span class="nc" id="L91">    }</span>
+
+    public String getTargetDirPath() {
+<span class="nc" id="L94">        return targetDirPath;</span>
+    }
+
+    public void setTargetDirPath(String targetDirPath) {
+<span class="nc" id="L98">        this.targetDirPath = targetDirPath;</span>
+<span class="nc" id="L99">    }</span>
+
+    public String getFileEncoding() {
+<span class="nc" id="L102">        return fileEncoding;</span>
+    }
+
+    public void setFileEncoding(String fileEncoding) {
+<span class="fc" id="L106">        this.fileEncoding = fileEncoding;</span>
+<span class="fc" id="L107">    }</span>
+
+    public boolean isCreateJsonFile() {
+<span class="nc" id="L110">        return createJsonFile;</span>
+    }
+
+    public void setCreateJsonFile(boolean createJsonFile) {
+<span class="fc" id="L114">        this.createJsonFile = createJsonFile;</span>
+<span class="fc" id="L115">    }</span>
+
+    public String getTargetJsonFilePath() {
+<span class="nc" id="L118">        return targetJsonFilePath;</span>
+    }
+
+    public void setTargetJsonFilePath(String targetJsonFilePath) {
+<span class="fc" id="L122">        this.targetJsonFilePath = targetJsonFilePath;</span>
+<span class="fc" id="L123">    }</span>
+
+    public String getJsonIntegrationFilePath() {
+<span class="nc" id="L126">        return jsonIntegrationFilePath;</span>
+    }
+
+    public void setJsonIntegrationFilePath(String jsonIntegrationFilePath) {
+<span class="fc" id="L130">        this.jsonIntegrationFilePath = jsonIntegrationFilePath;</span>
+<span class="fc" id="L131">    }</span>
+
+    public com.googlecode.htmlcompressor.compressor.HtmlCompressor getHtmlCompressor() {
+<span class="fc" id="L134">        return htmlCompressor;</span>
+    }
+
+    public void setHtmlCompressor(com.googlecode.htmlcompressor.compressor.HtmlCompressor htmlCompressor) {
+<span class="fc" id="L138">        this.htmlCompressor = htmlCompressor;</span>
+<span class="fc" id="L139">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

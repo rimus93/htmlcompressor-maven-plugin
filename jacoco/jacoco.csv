@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,FileTool,83,268,8,12,13,47,12,12,6,8
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,HtmlCompressorMojo,488,796,39,5,155,153,97,5,75,5
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,XmlCompressor,27,88,3,5,9,23,9,8,7,6
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,HtmlCompressor,33,142,3,7,11,40,11,14,9,11
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,XmlCompressorMojo,46,94,1,1,18,28,11,4,10,4
+Maven HTMLCompressor Plugin,com.tunyk.mvn.plugins.htmlcompressor,HelpMojo,893,0,110,0,159,0,71,0,16,0

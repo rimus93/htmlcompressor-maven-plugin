@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XmlCompressor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Maven HTMLCompressor Plugin</a> &gt; <a href="index.source.html" class="el_package">com.tunyk.mvn.plugins.htmlcompressor</a> &gt; <span class="el_source">XmlCompressor.java</span></div><h1>XmlCompressor.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011 Alex Tunyk &lt;alex at tunyk.com&gt;.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * See the NOTICE file distributed with this work for additional information
+ * regarding copyright ownership.
+ */
+package com.tunyk.mvn.plugins.htmlcompressor;
+
+import java.util.Map;
+
+public class XmlCompressor {
+
+<span class="fc" id="L25">    private static final String[] FILE_EXT = {&quot;xml&quot;};</span>
+
+    private String[] fileExt;
+    private String srcDirPath;
+    private String targetDirPath;
+    private String fileEncoding;
+    private com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressor;
+
+<span class="fc" id="L33">    public XmlCompressor(String srcDirPath, String targetDirPath) {</span>
+<span class="fc" id="L34">        this.srcDirPath = srcDirPath;</span>
+<span class="fc" id="L35">        this.targetDirPath = targetDirPath;</span>
+<span class="fc" id="L36">    }</span>
+
+    public void compress()  throws Exception {
+<span class="pc bpc" id="L39" title="3 of 4 branches missed.">        if (fileExt == null || fileExt.length == 0) {</span>
+<span class="fc" id="L40">            fileExt = FILE_EXT;</span>
+        }
+
+<span class="fc" id="L43">        FileTool fileTool = new FileTool(srcDirPath, fileExt, true);</span>
+<span class="fc" id="L44">        fileTool.setFileEncoding(fileEncoding);</span>
+<span class="fc" id="L45">        Map&lt;String, String&gt; map = fileTool.getFiles();</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (xmlCompressor == null) {</span>
+<span class="fc" id="L48">            xmlCompressor = new com.googlecode.htmlcompressor.compressor.XmlCompressor();</span>
+        }
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for(String key : map.keySet()) {</span>
+<span class="fc" id="L52">            map.put(key, xmlCompressor.compress(map.get(key)));</span>
+<span class="fc" id="L53">        }</span>
+
+<span class="fc" id="L55">        fileTool.writeFiles(map, targetDirPath);</span>
+<span class="fc" id="L56">    }</span>
+
+    public String[] getFileExt() {
+<span class="nc" id="L59">        return fileExt;</span>
+    }
+
+    public void setFileExt(String[] fileExt) {
+<span class="fc" id="L63">        this.fileExt = fileExt;</span>
+<span class="fc" id="L64">    }</span>
+    
+    public String getSrcDirPath() {
+<span class="nc" id="L67">        return srcDirPath;</span>
+    }
+
+    public void setSrcDirPath(String srcDirPath) {
+<span class="nc" id="L71">        this.srcDirPath = srcDirPath;</span>
+<span class="nc" id="L72">    }</span>
+
+    public String getTargetDirPath() {
+<span class="nc" id="L75">        return targetDirPath;</span>
+    }
+
+    public void setTargetDirPath(String targetDirPath) {
+<span class="nc" id="L79">        this.targetDirPath = targetDirPath;</span>
+<span class="nc" id="L80">    }</span>
+
+    public String getFileEncoding() {
+<span class="nc" id="L83">        return fileEncoding;</span>
+    }
+
+    public void setFileEncoding(String fileEncoding) {
+<span class="fc" id="L87">        this.fileEncoding = fileEncoding;</span>
+<span class="fc" id="L88">    }</span>
+
+    public com.googlecode.htmlcompressor.compressor.XmlCompressor getXmlCompressor() {
+<span class="nc" id="L91">        return xmlCompressor;</span>
+    }
+
+    public void setXmlCompressor(com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressor) {
+<span class="fc" id="L95">        this.xmlCompressor = xmlCompressor;</span>
+<span class="fc" id="L96">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
