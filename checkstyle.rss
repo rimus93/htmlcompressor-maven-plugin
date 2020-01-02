@@ -23,11 +23,11 @@ under the License.
     <link>https://github.com/alextunyk/htmlcompressor-maven-plugin</link>
     <description>Maven HTMLCompressor Plugin - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2011 - 2018 alextunyk</copyright>
+    <copyright>&#169;2011 - 2020 alextunyk</copyright>
     <item>
-      <title>File: 5,
+      <title>File: 6,
              Errors: 0,
-             Warnings: 1003,
+             Warnings: 1735,
              Infos: 0
       </title>
             <link>https://github.com/alextunyk/htmlcompressor-maven-plugin/checkstyle.html</link>
@@ -94,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  95
+                  96
                 </td>
                 <td>
                   0
@@ -108,7 +108,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  648
+                  652
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/alextunyk/htmlcompressor-maven-plugin/checkstyle.html#com.tunyk.mvn.plugins.htmlcompressor.HelpMojo.java">com/tunyk/mvn/plugins/htmlcompressor/HelpMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  727
                 </td>
                 <td>
                   0
