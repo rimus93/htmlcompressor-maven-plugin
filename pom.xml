@@ -58,10 +58,6 @@
     <system>GitHub Issue Tracking</system>
     <url>https://github.com/alextunyk/htmlcompressor-maven-plugin/issues</url>
   </issueManagement>
-  <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin</url>
-  </ciManagement>
   <distributionManagement>
     <snapshotRepository>
       <id>nexus-snapshots</id>
