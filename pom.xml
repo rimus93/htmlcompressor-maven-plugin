@@ -9,11 +9,6 @@
     <relativePath />
   </parent>
 
-  <groupId>com.github.hazendaz.maven</groupId>
-  <artifactId>htmlcompressor-maven-plugin</artifactId>
-  <version>1.5.2-SNAPSHOT</version>
-  <packaging>maven-plugin</packaging>
-
   <name>Maven HTMLCompressor Plugin</name>
   <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
   <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
