@@ -63,12 +63,16 @@
     <url>https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin</url>
   </ciManagement>
   <distributionManagement>
-    <site>
-        <id>gh-pages</id>
-        <name>GitHub Pages</name>
-        <url>github:https://alextunyk.github.io/htmlcompressor-maven-plugin/</url>
-    </site>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://nexus.localdomain/repository/maven-snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>nexus-releases</id>
+      <url>http://nexus.localdomain/repository/maven-releases/</url>
+    </repository>
   </distributionManagement>
+
 
   <dependencies>
     <dependency>
